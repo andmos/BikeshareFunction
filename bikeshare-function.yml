@@ -3,7 +3,7 @@ provider:
   gateway: http://127.0.0.1:8080
 functions:
   bikeshare-function:
-    lang: csharp
+    lang: csharp-kestrel
     handler: ./bikeshare-function
     image: andmos/bikeshare-function:latest
     environment:

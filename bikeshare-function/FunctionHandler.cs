@@ -4,6 +4,7 @@ using BikeshareClient;
 using BikeshareClient.Models;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Function
 {
@@ -15,14 +16,14 @@ namespace Function
             var gbfsAddress = System.Environment.GetEnvironmentVariable("GBFSAddress");
             bikeshareClient = new Client(gbfsAddress);
         }
-        public string Handle(string input) 
+        public async Task<string> Handle(string input) 
         {
             if(string.IsNullOrEmpty(input))
             {
                 return "Requires BikeShare station name";
             }
-            var stationId = GetStationId(input, bikeshareClient.GetStationsAsync().Result);
-            var stationStatus = GetStationStatus(stationId);
+            var stationId =  GetStationId(input, await bikeshareClient.GetStationsAsync());
+            var stationStatus = await GetStationStatus(stationId);
 
             return $"Bikes available: {stationStatus.BikesAvailable}, Locks available: {stationStatus.DocksAvailable}";
         }
@@ -32,9 +33,9 @@ namespace Function
             return stations.SingleOrDefault(s => s.Name.ToLower().Equals(stationName.ToLower().Trim())).Id; 
         }
 
-        private StationStatus GetStationStatus(string stationId)
+        private async Task<StationStatus> GetStationStatus(string stationId)
         {
-            var stations = bikeshareClient.GetStationsStatusAsync().Result;
+            var stations = await bikeshareClient.GetStationsStatusAsync();
             return stations.FirstOrDefault(s => s.Id.Equals(stationId));
         }
     }
