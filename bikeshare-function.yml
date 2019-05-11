@@ -7,4 +7,8 @@ functions:
     handler: ./bikeshare-function
     image: andmos/bikeshare-function:latest
     environment:
-      GBFSAddress: http://gbfs.urbansharing.com/bergenbysykkel.no/gbfs.json
+      GBFSAddress: http://gbfs.urbansharing.com/trondheim/gbfs.json
+  gbfs-systems-function:
+    lang: csharp-kestrel
+    handler: ./gbfs-systems-function
+    image: andmos/gbfs-system-function:latest
