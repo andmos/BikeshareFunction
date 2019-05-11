@@ -4,7 +4,7 @@ BikeshareFunction
 [OpenFaaS](https://www.openfaas.com/) function for [BikeshareClient](https://github.com/andmos/BikeshareClient) access.
 Provides a simple serverless [GBFS](https://github.com/NABSA/gbfs) status system.
 
-`gbfs-sysmtems-function` parses the [GBFS Systems CSV](https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv) to JSON, providing API for systems overview.
+`gbfs-systems-function` parses the [GBFS Systems CSV](https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv) to JSON, providing API for systems overview.
 
 ```bash
 faas-cli template pull https://github.com/burtonr/csharp-kestrel-template
