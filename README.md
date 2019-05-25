@@ -13,7 +13,10 @@ faas-cli build -f bikeshare-function.yml
 faas-cli deploy -f bikeshare-function.yml
 
 echo "johanneskirken" |faas-cli invoke bikeshare-function
-# Bikes available: 1, Locks available: 23
+# {
+#  "BikesAvailable": 1,
+#  "LocksAvailable": 23
+# }
 
 echo |faas-cli invoke gbfs-systems-function |jq
 #{
@@ -24,12 +27,15 @@ echo |faas-cli invoke gbfs-systems-function |jq
 #    "Url": "http://sobilongbeach.com/",
 #    "GBFSFileUrl": "http://sobilongbeach.com/opendata/gbfs.json"
 #  }
-```
+``` 
 
 Change GBFS system by updating the `GBFSAddress` variable:
 
 ```bash
 faas-cli deploy -f bikeshare-function.yml --env=GBFSAddress=https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json update=true
 echo "Diakonhjemmet" |faas-cli invoke bikeshare-function
-# Bikes available: 5, Locks available: 9
+# {
+#  "BikesAvailable": 9,
+#  "LocksAvailable": 5
+# }
 ```

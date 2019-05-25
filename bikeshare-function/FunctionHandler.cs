@@ -5,6 +5,8 @@ using BikeshareClient.Models;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Function
 {
@@ -24,8 +26,11 @@ namespace Function
             }
             var stationId =  GetStationId(input, await bikeshareClient.GetStationsAsync());
             var stationStatus = await GetStationStatus(stationId);
+            dynamic returnableStationStatus = new JObject();
+            returnableStationStatus.BikesAvailable = stationStatus.BikesAvailable;
+            returnableStationStatus.LocksAvailable = stationStatus.DocksAvailable;
 
-            return $"Bikes available: {stationStatus.BikesAvailable}, Locks available: {stationStatus.DocksAvailable}";
+            return JsonConvert.SerializeObject(returnableStationStatus);
         }
 
         private string GetStationId(string stationName, IEnumerable<Station> stations)
