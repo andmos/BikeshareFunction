@@ -39,3 +39,5 @@ echo "Diakonhjemmet" |faas-cli invoke bikeshare-function
 #  "LocksAvailable": 5
 # }
 ```
+
+To run OpenFaaS, look at the guides for [Docker Swarm](https://docs.openfaas.com/deployment/docker-swarm/), [Kubernetes](https://docs.openfaas.com/deployment/kubernetes/) or [OpenShift](https://docs.openfaas.com/deployment/openshift/).
