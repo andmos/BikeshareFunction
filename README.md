@@ -27,7 +27,7 @@ echo |faas-cli invoke gbfs-systems-function |jq
 #    "Url": "http://sobilongbeach.com/",
 #    "GBFSFileUrl": "http://sobilongbeach.com/opendata/gbfs.json"
 #  }
-``` 
+```
 
 Change GBFS system by updating the `GBFSAddress` variable:
 
@@ -38,6 +38,29 @@ echo "Diakonhjemmet" |faas-cli invoke bikeshare-function
 #  "BikesAvailable": 9,
 #  "LocksAvailable": 5
 # }
+```
+
+This project also contains function to post from `bikeshare-function` to Slack. Add a new bot named `bikesharebot` to a Slack workspace, and update the variables under `bikeshare-slack-function:` in `bikeshare-function.yml`:
+
+```yaml
+    environment:
+      bikeBotToken: <mySlackBotToken>
+      gateway_hostname: http://gateway:8080/
+```
+and initialize the bot by trigging the function:
+
+```shell
+echo "init" |faas-cli invoke bikeshare-slack-function
+# Bot initializing
+```
+
+Now simply ask the bot for a station:
+
+```shell
+andmos [8:40 PM]
+@BikeshareBot Lerkendal
+BikeshareBot APP [8:40 PM]
+:bike:: 17 :unlock:: 3
 ```
 
 To run OpenFaaS, look at the guides for [Docker Swarm](https://docs.openfaas.com/deployment/docker-swarm/), [Kubernetes](https://docs.openfaas.com/deployment/kubernetes/) or [OpenShift](https://docs.openfaas.com/deployment/openshift/).
