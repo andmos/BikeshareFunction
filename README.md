@@ -12,7 +12,7 @@ faas-cli build -f bikeshare-function.yml
 
 faas-cli deploy -f bikeshare-function.yml
 
-echo "johanneskirken" |faas-cli invoke bikeshare-function
+echo "johanneskirken" |faas-cli invoke bikeshare-function |jq
 # {
 #  "BikesAvailable": 1,
 #  "LocksAvailable": 23
