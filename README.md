@@ -43,9 +43,9 @@ echo "Diakonhjemmet" |faas-cli invoke bikeshare-function
 This project also contains function to post from `bikeshare-function` to Slack. Add a new bot named `bikesharebot` to a Slack workspace, and update the variables under `bikeshare-slack-function:` in `bikeshare-function.yml`:
 
 ```yaml
-    environment:
-      bikeBotToken: <mySlackBotToken>
-      gateway_hostname: http://gateway:8080/
+environment:
+    bikeBotToken: <mySlackBotToken>
+    gateway_hostname: http://gateway:8080/
 ```
 and initialize the bot by trigging the function:
 
