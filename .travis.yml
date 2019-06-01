@@ -4,10 +4,11 @@ services:
 
 before_script:
     - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    - curl -sLS https://cli.openfaas.com | sudo sh
 
 script: 
-    - docker run -v $(pwd):/root --rm -t openfaas/faas-cli:0.8.14 faas-cli template pull https://github.com/burtonr/csharp-kestrel-template
-    - docker run -v $(pwd):/root -v /var/run/docker.sock:/var/run/docker.sock --rm -t openfaas/faas-cli:0.8.14 faas-cli build -f bikeshare-function.yml 
+    - faas-cli template pull https://github.com/burtonr/csharp-kestrel-template
+    - faas-cli build -f bikeshare-function.yml
 
 after_success:
-    - docker run -v $(pwd):/root -v /var/run/docker.sock:/var/run/docker.sock --rm -t openfaas/faas-cli:0.8.14 faas-cli push -f bikeshare-function.yml 
+    - faas-cli push -f bikeshare-function.yml
