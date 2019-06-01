@@ -64,3 +64,6 @@ BikeshareBot APP [8:40 PM]
 ```
 
 To run OpenFaaS, look at the guides for [Docker Swarm](https://docs.openfaas.com/deployment/docker-swarm/), [Kubernetes](https://docs.openfaas.com/deployment/kubernetes/) or [OpenShift](https://docs.openfaas.com/deployment/openshift/).
+
+
+[![Build Status](https://travis-ci.org/andmos/BikeshareFunction.svg?branch=master)](https://travis-ci.org/andmos/BikeshareFunction)
