@@ -47,6 +47,7 @@ environment:
     bikeBotToken: <mySlackBotToken>
     gateway_hostname: http://gateway:8080/
 ```
+
 and initialize the bot by trigging the function:
 
 ```shell
@@ -64,6 +65,5 @@ BikeshareBot APP [8:40 PM]
 ```
 
 To run OpenFaaS, look at the guides for [Docker Swarm](https://docs.openfaas.com/deployment/docker-swarm/), [Kubernetes](https://docs.openfaas.com/deployment/kubernetes/) or [OpenShift](https://docs.openfaas.com/deployment/openshift/).
-
 
 [![Build Status](https://travis-ci.org/andmos/BikeshareFunction.svg?branch=master)](https://travis-ci.org/andmos/BikeshareFunction)
