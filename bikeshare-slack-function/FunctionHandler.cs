@@ -49,6 +49,7 @@ namespace Function
         {
             _bikeshareBot.OnMessage += async (sender, message) =>
             {
+                Console.WriteLine($"Info: Slack message: {message.Text}");
                 if (message.MentionedUsers.Any(user => user == BikeUsername))
                 {
                     var stationStatusResponse = await _bikeshareFunctionHttpClient.PostAsync(BikeShareFunctionEndpoint, new StringContent(ParseTextFromChannel(message.Text)));
@@ -64,18 +65,30 @@ namespace Function
             var words = text.Split(' ');
             if(words.Count() > 0)
             {
-                return words.Last();
+                words = words.Skip(1).ToArray();
+                text = string.Join(" ", words);
             }
-            return text; 
+            Console.WriteLine($"Info: Parsed text: {text}");
+            return text;
         }
 
         private string FormatBikeStationStatus(string rawJson)
         {
-            var jObject = JObject.Parse(rawJson);
-            var bikeToken = jObject.GetValue("BikesAvailable");
-            var lockToken = jObject.GetValue("LocksAvailable");
-
-            return $"🚲: {bikeToken.ToString()} 🔓: {lockToken.ToString()}";
+            string returnText;
+            try
+            {
+                var jObject = JObject.Parse(rawJson);
+                var bikeToken = jObject.GetValue("BikesAvailable");
+                var lockToken = jObject.GetValue("LocksAvailable");
+                returnText = $"🚲: {bikeToken.ToString()} 🔓: {lockToken.ToString()}";
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Handled exception: {ex}");
+                returnText = "Something went wrong when parsing station status, was station name correct?";
+            }
+            return returnText;
+            
         }
 
     }
