@@ -15,7 +15,7 @@ functions:
     environment:
       gateway_hostname: http://gateway:8080/
     secrets:
-        - bikeBotToken
+        - bikeBotSlackToken
   gbfs-systems-function:
     lang: csharp-kestrel
     handler: ./gbfs-systems-function
