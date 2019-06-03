@@ -13,8 +13,10 @@ functions:
     handler: ./bikeshare-slack-function
     image: andmos/bikeshare-slack-function:latest
     environment:
-      bikeBotToken:
+      bikeBotToken: xoxb-569652517619-639265245442-TB1YweTffIetXTLYQ95iBvzo
       gateway_hostname: http://gateway:8080/
+    secrets:
+        - bikeBotToken
   gbfs-systems-function:
     lang: csharp-kestrel
     handler: ./gbfs-systems-function
