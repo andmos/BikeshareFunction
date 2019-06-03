@@ -40,15 +40,20 @@ echo "Diakonhjemmet" |faas-cli invoke bikeshare-function
 # }
 ```
 
-This project also contains function to post from `bikeshare-function` to Slack. Add a new bot named `bikesharebot` to a Slack workspace, and update the variables under `bikeshare-slack-function:` in `bikeshare-function.yml`:
+This project also contains function to post from `bikeshare-function` to Slack. Add a new bot named `bikesharebot` to a Slack workspace, and update the variable under `bikeshare-slack-function:` in `bikeshare-function.yml` with the location of the [OpenFaaS gateway](https://github.com/openfaas/workshop/blob/master/lab4.md#call-one-function-from-another):
 
 ```yaml
 environment:
-    bikeBotToken: <mySlackBotToken>
     gateway_hostname: http://gateway:8080/
 ```
 
-and initialize the bot by trigging the function:
+Add the bot's OAUTH token to [OpenFaaS secrets](https://docs.openfaas.com/reference/secrets/):
+
+```shell
+faas-cli secret create bikeBotSlackToken --from-file=slackbot-key.txt
+```
+
+and initialize the bot by trigging the function after deploy:
 
 ```shell
 echo "init" |faas-cli invoke bikeshare-slack-function
