@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Function
 {
@@ -75,13 +76,14 @@ namespace Function
 
         private string FormatBikeStationStatus(string rawJson)
         {
-            string returnText;
+            string returnText = string.Empty;
             try
             {
-                var jObject = JObject.Parse(rawJson);
-                var bikeToken = jObject.GetValue("BikesAvailable");
-                var lockToken = jObject.GetValue("LocksAvailable");
-                returnText = $"🚲: {bikeToken.ToString()} 🔓: {lockToken.ToString()}";
+                var bikeshareStationStatus = JsonConvert.DeserializeObject<List<BikeshareFunctionStationStatus>>(rawJson);
+                foreach(var stationStatus in bikeshareStationStatus)
+                {
+                    returnText += $"{stationStatus.Name}: 🚲: {stationStatus.BikesAvailable} 🔓: {stationStatus.LocksAvailable} {Environment.NewLine}";
+                }
             }
             catch(Exception ex)
             {
@@ -89,8 +91,12 @@ namespace Function
                 returnText = "Something went wrong when parsing station status, was station name correct?";
             }
             return returnText;
-            
         }
-
+        private class BikeshareFunctionStationStatus
+        {
+            public string Name {get; set;}
+            public int BikesAvailable {get; set;}
+            public int LocksAvailable {get; set;}
+}
     }
 }

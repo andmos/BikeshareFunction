@@ -31,7 +31,7 @@ namespace Function
                 return JsonConvert.SerializeObject(stationStatus);
             }
             stationStatus = stationStatus.Where(station => station.Name.ToLower().Equals(input.ToLower()));
-            return JsonConvert.SerializeObject(stationStatus.FirstOrDefault());
+            return JsonConvert.SerializeObject(stationStatus);
         }
 
         private async Task<IEnumerable<BikeshareFunctionStationStatus>> GetAllBikeStationStatus()

@@ -14,6 +14,7 @@ faas-cli deploy -f bikeshare-function.yml
 
 echo "johanneskirken" |faas-cli invoke bikeshare-function |jq
 # {
+#  "Name: "Johanneskirken",
 #  "BikesAvailable": 1,
 #  "LocksAvailable": 23
 # }
@@ -35,6 +36,7 @@ Change GBFS system by updating the `GBFSAddress` variable:
 faas-cli deploy -f bikeshare-function.yml --env=GBFSAddress=https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json update=true
 echo "Diakonhjemmet" |faas-cli invoke bikeshare-function
 # {
+#  "Name: "Diakonhjemmet",
 #  "BikesAvailable": 9,
 #  "LocksAvailable": 5
 # }
@@ -66,7 +68,7 @@ Now simply ask the bot for a station:
 andmos [8:40 PM]
 @BikeshareBot Lerkendal
 BikeshareBot APP [8:40 PM]
-:bike:: 17 :unlock:: 3
+Lerkendal: :bike:: 17 :unlock:: 3
 ```
 
 To run OpenFaaS, look at the guides for [Docker Swarm](https://docs.openfaas.com/deployment/docker-swarm/), [Kubernetes](https://docs.openfaas.com/deployment/kubernetes/) or [OpenShift](https://docs.openfaas.com/deployment/openshift/).
