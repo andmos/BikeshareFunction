@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using Slackbot;
 using System.Linq;
 using System.Net.Http;
-using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Collections.Generic;
 
@@ -31,7 +30,7 @@ namespace Function
                 BaseAddress = new Uri(openFaasGateway)
             };
 
-            var botToken = File.ReadAllText(@"/var/openfaas/secrets/bikeBotSlackToken");
+            var botToken = File.ReadAllText(@"/var/openfaas/secrets/bikebotslacktoken");
             if(string.IsNullOrWhiteSpace(botToken))
             {
                 throw new ArgumentNullException("bikeBotToken env variable must be set" );

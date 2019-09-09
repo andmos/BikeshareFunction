@@ -12,11 +12,11 @@ faas-cli build -f bikeshare-function.yml
 
 faas-cli deploy -f bikeshare-function.yml
 
-echo "johanneskirken" |faas-cli invoke bikeshare-function |jq
+echo "skansen" |faas-cli invoke bikeshare-function |jq
 # {
-#  "Name: "Johanneskirken",
-#  "BikesAvailable": 1,
-#  "LocksAvailable": 23
+#  "Name: "skansen",
+#  "BikesAvailable": 18,
+#  "LocksAvailable": 0
 # }
 
 echo |faas-cli invoke gbfs-systems-function |jq
@@ -52,7 +52,7 @@ environment:
 Add the bot's OAUTH token to [OpenFaaS secrets](https://docs.openfaas.com/reference/secrets/):
 
 ```shell
-faas-cli secret create bikeBotSlackToken --from-file=slackbot-key.txt
+faas-cli secret create bikebotslacktoken --from-file=slackbot-key.txt
 ```
 
 and initialize the bot by trigging the function after deploy:
