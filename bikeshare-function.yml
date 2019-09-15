@@ -2,6 +2,10 @@ provider:
   name: faas
   gateway: http://127.0.0.1:8080
 functions:
+  gbfs-systems-function:
+    lang: csharp-kestrel
+    handler: ./gbfs-systems-function
+    image: andmos/gbfs-system-function:latest
   bikeshare-function:
     lang: csharp-kestrel
     handler: ./bikeshare-function
@@ -16,7 +20,3 @@ functions:
       gateway_hostname: http://gateway:8080/
     secrets:
         - bikebotslacktoken
-  gbfs-systems-function:
-    lang: csharp-kestrel
-    handler: ./gbfs-systems-function
-    image: andmos/gbfs-system-function:latest
