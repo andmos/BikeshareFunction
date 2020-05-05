@@ -1,14 +1,14 @@
 sudo: required
 services:
     - docker
-
 before_script:
-    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
     - curl -sLS https://cli.openfaas.com | sudo sh
-
 script: 
     - faas-cli template pull https://github.com/burtonr/csharp-kestrel-template
     - faas-cli build -f bikeshare-function.yml
-
-after_success:
-    - faas-cli push -f bikeshare-function.yml
+deploy:
+    provider: script
+    skip_cleanup: true
+    on:
+        branch: master
+    script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; faas-cli push -f bikeshare-function.yml
