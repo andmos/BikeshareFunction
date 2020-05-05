@@ -9,6 +9,7 @@ using CsvHelper;
 using CsvHelper.Configuration.Attributes;
 using System.IO;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace Function
 {
@@ -26,7 +27,7 @@ namespace Function
             List<GbfsSystem> gbfsSystems = new List<GbfsSystem>();
             using(var reader = new StreamReader(await _httpClient.GetStreamAsync(_gbfsSystemsFile)))
             {
-                using(var csv = new CsvReader(reader))
+                using(var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
                     gbfsSystems = csv.GetRecords<GbfsSystem>().ToList();
                 }
