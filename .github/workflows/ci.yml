@@ -1,7 +1,7 @@
 name: CI
 on: [push, pull_request]
 jobs:
-  func-build:
+  BikeshareFunction-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,7 +16,7 @@ jobs:
         with:
           args: template pull https://github.com/burtonr/csharp-kestrel-template
       
-      - name: Run build
+      - name: Run build --shrinkwrap
         uses: docker://openfaas/faas-cli:latest-root
         with:
-          args: build -f bikeshare-function.yml
+          args: build -f bikeshare-function.yml --shrinkwrap
