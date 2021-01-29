@@ -73,6 +73,6 @@ Lerkendal: :bike:: 17 :unlock:: 3
 
 To run OpenFaaS, look at the guides for [Docker Swarm](https://docs.openfaas.com/deployment/docker-swarm/), [Kubernetes](https://docs.openfaas.com/deployment/kubernetes/) or [OpenShift](https://docs.openfaas.com/deployment/openshift/).
 
-[![Build Status](https://travis-ci.org/andmos/BikeshareFunction.svg?branch=master)](https://travis-ci.org/andmos/BikeshareFunction)
+[![Build Status](https://github.com/andmos/bikesharefunction/workflows/Publish/badge.svg)](https://github.com/andmos/BikeshareFunction/actions?query=workflow%3APublish)
 
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=andmos/BikeshareFunction)](https://dependabot.com)
