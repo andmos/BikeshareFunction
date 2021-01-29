@@ -16,7 +16,7 @@ jobs:
         with:
           args: template pull https://github.com/burtonr/csharp-kestrel-template
       
-      - name: Run shrinkwrap build
+      - name: Run build
         uses: docker://openfaas/faas-cli:latest-root
         with:
-          args: build -f bikeshare-function.yml --shrinkwrap
+          args: build -f bikeshare-function.yml
