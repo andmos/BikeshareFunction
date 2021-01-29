@@ -14,7 +14,7 @@ jobs:
       - name: Pull template
         uses: docker://openfaas/faas-cli:latest-root
         with:
-          args: template pull https://github.com/burtonr/csharp-kestrel-templategolang-http
+          args: template pull ${{ github.token }}/github.com/burtonr/csharp-kestrel-templategolang-http
       
       - name: Run shrinkwrap build
         uses: docker://openfaas/faas-cli:latest-root
