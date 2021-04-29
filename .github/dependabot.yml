@@ -1,0 +1,20 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/bikeshare-function"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+- package-ecosystem: nuget
+  directory: "/bikeshare-slack-function"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+- package-ecosystem: nuget
+  directory: "/gbfs-systems-function"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
